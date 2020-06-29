@@ -77,16 +77,6 @@ router.post('/users/logoutAll', auth, async (req, res) => {
         res.status(500).send()
     }
 })
-//need to remove
-//all user
-router.get('/users', async (req, res) => {
-    try {
-        const users = await User.find({})
-        res.send(users)
-    } catch (e) {
-        res.status(500).send()
-    }
-})
 //user Profile
 router.get('/users/me', auth, async (req, res) => {
     res.send(req.user)
