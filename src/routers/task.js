@@ -11,8 +11,8 @@ router.post('/tasks', auth, async (req, res) => {
     try {
         await task.save()
         res.status(201).send(task)
-    } catch (e) {
-        res.status(400).send(e)
+    } catch (error) {
+        res.status(400).send(error)
     }
 })
 //read all tasks of user according to their value of completion
@@ -37,7 +37,7 @@ router.get('/tasks', auth, async (req, res) => {
             }
         }).execPopulate()
         res.send(req.user.tasks)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
     }
 })
@@ -51,7 +51,7 @@ router.get('/tasks/:id', auth, async (req, res) => {
         }
 
         res.send(task)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
     }
 })
@@ -75,8 +75,8 @@ router.patch('/tasks/:id', auth, async (req, res) => {
         updates.forEach(update => task[update] = req.body[update])
         task.save()
         res.send(task)
-    } catch (e) {
-        res.status(400).send(e)
+    } catch (error) {
+        res.status(400).send(error)
     }
 })
 //delete task by id
@@ -88,7 +88,7 @@ router.delete('/tasks/:id', auth, async (req, res) => {
         }
 
         res.send(task)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
     }
 })
